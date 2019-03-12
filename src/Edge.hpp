@@ -12,7 +12,7 @@ protected:
     int node2;
 
 public:
-    Edge(int id, float weight, int node1, int node2);
+    Edge(int id, int node1, int node2, float weight);
     ~Edge();
     vector<int> getNode_pair();
     int getid();
