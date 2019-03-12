@@ -72,5 +72,4 @@ int Node::get_initialDegree(){
 bool Node::operator<(const Node& other) {
     if(this->degree != other.degree) return this->degree>other.degree;
     return this->id>other.id;
-    // TODO (checkpoint)
 }
