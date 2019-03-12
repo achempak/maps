@@ -17,9 +17,9 @@ BUILDDIR := build
 OBJDIR := $(BUILDDIR)/obj
 
 
-all: init pathfinder socialgathering
+all: init mst
 
-maps: init $(addprefix $(OBJDIR)/,maps.o Graph.o Node.o Edge.o DisjointSet.o MST.o)
+mst: init $(addprefix $(OBJDIR)/, mstbuilder.o Graph.o Node.o Edge.o DisjointSet.o MST.o)
 	$(CC) $(LDFLAGS) -o $(BUILDDIR)/$@ $(filter-out init,$^)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp

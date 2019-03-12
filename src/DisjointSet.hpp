@@ -12,6 +12,6 @@ public:
     DisjointSet(int numItems);
     ~DisjointSet();
     int ds_find(int item);
-    void ds_union(int item1, int item2);    
+    bool ds_union(int item1, int item2);    
 };
 #endif

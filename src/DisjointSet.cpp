@@ -1,5 +1,4 @@
 #include "DisjointSet.hpp"
-#include <queue>
 
 DisjointSet::DisjointSet(int numItems){
     items = vector<int>(numItems, -1);
@@ -17,16 +16,16 @@ int DisjointSet::ds_find(int item){
         temp = items[temp];
     }
 
-    for(int i=0; i<v.size()-1; i++){
+    for(unsigned i=0; i<v.size()-1; i++){
         items[v[i]] = temp;
     }
     return temp;
 }
 
-void DisjointSet::ds_union(int item1, int item2){
+bool DisjointSet::ds_union(int item1, int item2){
     int sentinel1 = DisjointSet::ds_find(item1);
     int sentinel2 = DisjointSet::ds_find(item2);
-    if(sentinel1 == sentinel2) return;
+    if(sentinel1 == sentinel2) return false;
     int size1 = sizes[sentinel1];
     int size2 = sizes[sentinel2];
     if(size1<size2){
@@ -37,4 +36,5 @@ void DisjointSet::ds_union(int item1, int item2){
         items[sentinel2] = sentinel1;
         sizes[sentinel2] = size1+size2;
     }
+    return true;
 }

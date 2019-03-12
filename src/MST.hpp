@@ -3,7 +3,6 @@
 
 #include "Edge.hpp"
 #include "DisjointSet.hpp"
-#include "Node.hpp"
 
 #include <iostream>
 #include <queue>
