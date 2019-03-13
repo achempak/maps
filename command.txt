@@ -1,0 +1,1 @@
+./build/part3 data/mst_tester.txt output.txt

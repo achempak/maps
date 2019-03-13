@@ -1,3 +1,4 @@
+/*Edge cpp*/
 #include "Edge.hpp"
 
 Edge::Edge(int id, int node1, int node2, float weight) : id(id), weight(weight), node1(node1), node2(node2){}

@@ -48,12 +48,12 @@ float Graph::getSum_edges(){
   return sum_edges;
 }
 
-/* Add a node to the graph representing person with id idNumber and add a connection between two nodes in the graph. */
-//TODO
-/*To add friends pair (id1 , id2) in to the hash map  
-    idNumbers will be a vetor having to ids 
-    idNumbers[0] : id1
-    idNumber[1] : id2
+
+/*Adds node_data to the hash map  
+    node_data is a vector containing node ids and the edge weight between those nodes
+    node_data[0]: id1
+    node_data[1]: id2
+    node_data[1]: edge weight
     */
  void Graph::addNode(vector<string> node_data){
    int id_1 = stoi(node_data[0]); // stores the first element of the vector by converting the string into an int
@@ -82,7 +82,6 @@ float Graph::getSum_edges(){
  }
  
 /* Read in relationships from an input file to create a graph */
-
 bool Graph::loadFromFile(const char* in_filename) {
   ifstream infile(in_filename);
 
@@ -102,9 +101,7 @@ bool Graph::loadFromFile(const char* in_filename) {
     if (record.size() != 3) {
       continue;
     }
-
-    //TODO - YOU HAVE THE PAIR OF IDS OF 2 FRIENDS IN 'RECORD'. WHAT DO NEED TO DO NOW? 
-    Graph::addNode(record);    // Add id pairs into hashmap
+    Graph::addNode(record); //Add node to hashmap with friend data and edge data
   } 
 
   if (!infile.eof()) {
@@ -215,7 +212,6 @@ void Graph::shortestPath(int from, int to, ofstream& outfile){
 
   //Now we are at the node for which we have to find the shortest path.
   //We just need to traverse back with the help of prev pointer to retrace the path
-
   if(curr==(*graph)[to]){
     stack<Node*> toReturn; // Creating a stack to reverse the path traversed
     Node* current = curr;

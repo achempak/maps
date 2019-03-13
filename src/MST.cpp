@@ -1,9 +1,9 @@
+/*MST cpp*/
 #include <vector>
 #include <string>
 #include <iostream>
 #include <fstream>
 #include <sstream>
-
 #include "MST.hpp"
 using namespace std;
 
@@ -46,9 +46,7 @@ bool MST::loadFromFile(const char* in_filename){
     if (record.size() != 4) {
       continue;
     }
-
-    //TODO - YOU HAVE THE PAIR OF IDS OF 2 FRIENDS IN 'RECORD'. WHAT DO NEED TO DO NOW? 
-    MST::addEdge(record);    // Add id pairs into hashmap
+    MST::addEdge(record); // Add id pairs into hashmap
   } 
 
   if (!infile.eof()) {
@@ -59,6 +57,11 @@ bool MST::loadFromFile(const char* in_filename){
   return true;
 }
 
+/**
+ * Converts edge data from string to varoius integers representing
+ * edge id, node1, node2, and weight. Pushes new edge to pq using
+ * this data.
+ */
 void MST::addEdge(vector<string> edgeinfo){
   int id = stoi(edgeinfo[0]);
   int node1 = stoi(edgeinfo[1]);
@@ -69,6 +72,10 @@ void MST::addEdge(vector<string> edgeinfo){
   pq->push(new Edge(id, node1, node2, weight));
 }
 
+/**
+ * Build mst using Kruskal's algorithm. A disjoint set is
+ * used to keep track of node relatoinships.
+ */
 void MST::mstbuild(ofstream& out_file){
   DisjointSet ds(getNumnodes());
   Edge* curr = pq->top();

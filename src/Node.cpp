@@ -1,13 +1,7 @@
-// cpp file for the Node class which will contain all the definations of the Node class
 #include "Node.hpp"
 #include <vector>
 #include <iostream>
 
-/*  Costructor which will initialize:
-    id: to be the id of the person
-    isvisited: flag to false(the node is not visited)
-    prev: null pointer
- */
 Node::Node(int id) : id(id), isVisited(0), prev(0), degree(0), initial_degree(0){
     friends = vector<int>(0);
     edges = vector<float>(0);

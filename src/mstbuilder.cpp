@@ -1,3 +1,4 @@
+/*Tester file*/
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -28,10 +29,6 @@ int main(int argc, char* argv[]) {
 
   char* roadmap_filename = argv[1];
   char* mst_output_filename = argv[2];
-  //char* output_filename = argv[3];
-
-  //TODO   
- /* You can call the pathfinder function from here */
  
   MST* a = new MST();
   ofstream outfile(mst_output_filename);
@@ -44,12 +41,4 @@ int main(int argc, char* argv[]) {
   b->loadFromFile(mst_output_filename);
   b->printGraph();
   cout<<"The sum of the edges is: "<<b->getSum_edges();
- //Graph* a = new Graph();
- //a->loadFromFile(graph_filename);
-
- /*To print the graph, uncomment the below line and see the magic*/
- //a->printGraph();
-
- //a->shortestPathHelper(pairs_filename, output_filename);
- //delete a;
 }  
