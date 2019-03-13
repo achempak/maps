@@ -22,6 +22,7 @@ public:
 /*Constructor to create an object in the heap that accessed through a pointer*/
 Graph::Graph(void) { 
   graph = new unordered_map<int, Node*>;
+  sum_edges = 0;
 }
 
 /*Destructor*/
@@ -43,6 +44,10 @@ void Graph::reinitialize()
   }
 }
 
+float Graph::getSum_edges(){
+  return sum_edges;
+}
+
 /* Add a node to the graph representing person with id idNumber and add a connection between two nodes in the graph. */
 //TODO
 /*To add friends pair (id1 , id2) in to the hash map  
@@ -50,9 +55,10 @@ void Graph::reinitialize()
     idNumbers[0] : id1
     idNumber[1] : id2
     */
- void Graph::addNode(vector<string> idNumbers){
-   int id_1 = stoi(idNumbers[0]); // stores the first element of the vector by converting the string into an int
-   int id_2 = stoi(idNumbers[1]); 
+ void Graph::addNode(vector<string> node_data){
+   int id_1 = stoi(node_data[0]); // stores the first element of the vector by converting the string into an int
+   int id_2 = stoi(node_data[1]); 
+   float edge = stof(node_data[2]); // converts edge string to edge float
 
    if(graph->find(id_1)==graph->end())
    {
@@ -67,9 +73,12 @@ void Graph::reinitialize()
    (*graph)[id_1]->addFriend(id_2);
    (*graph)[id_1]->incrementDegree();
    (*graph)[id_1]->increment_initialDegree();
+   (*graph)[id_1]->addEdge(edge);
    (*graph)[id_2]->addFriend(id_1);
    (*graph)[id_2]->incrementDegree();
    (*graph)[id_2]->increment_initialDegree();
+   (*graph)[id_2]->addEdge(edge); 
+   sum_edges += edge;
  }
  
 /* Read in relationships from an input file to create a graph */
@@ -90,7 +99,7 @@ bool Graph::loadFromFile(const char* in_filename) {
       record.push_back(s);
     }
 
-    if (record.size() != 2) {
+    if (record.size() != 3) {
       continue;
     }
 
@@ -281,11 +290,16 @@ void Graph::printGraph(){
   for(unsigned i=0; i<graph->bucket_count(); ++i){
     cout<<"Bucket #"<<i<<" contains: ";
     for(auto local_it = graph->begin(i); local_it!=graph->end(i); ++local_it){
-      cout<<local_it->second->getId()<<"(Degree: "<<local_it->second->getDegree()<<"). "<<"(friends: ";
+      cout<<local_it->second->getId()<<"(Degree: "<<local_it->second->getDegree()<<"). "<<"(Friends: ";
       for(auto iter = local_it->second->getFriends()->begin(); iter!=local_it->second->getFriends()->end(); ++iter){
         cout<<*iter<<",";
       }
       cout<<"), ";
+      cout<<"(Edges: ";
+      for(auto iter = local_it->second->getEdges()->begin(); iter!=local_it->second->getEdges()->end(); ++iter){
+        cout<<*iter<<",";
+      }
+      cout<<") ";
     }
     cout<<endl;
   }

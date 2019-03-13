@@ -10,6 +10,7 @@
  */
 Node::Node(int id) : id(id), isVisited(0), prev(0), degree(0), initial_degree(0){
     friends = vector<int>(0);
+    edges = vector<float>(0);
 }
 
 Node::~Node(void){}
@@ -34,7 +35,13 @@ void Node::addFriend(int n){
     friends.push_back(n);
 }
 
-//void Node::removeFriend(int n){}
+void Node::addEdge(float e){
+    edges.push_back(e);
+}
+
+vector<float>* Node::getEdges(){
+    return &edges;
+}
 
 Node* Node::getPrev(){
     return prev;

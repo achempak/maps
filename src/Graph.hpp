@@ -11,6 +11,7 @@ class Graph {
  protected:
   /*Data Structure : Hash Map with Key as the "ids" and values as the pointer to the obeject (Node)*/
   unordered_map<int, Node*>* graph; // pointer to the hash map
+  float sum_edges;
 
  public:
   Graph(void); //Constructor
@@ -30,7 +31,11 @@ class Graph {
     idNumbers[0]=id1
     idNumbers[1]=id2
   */
-  void addNode(vector<string> idNumbers); 
+  void addNode(vector<string> node_data); 
+
+  void addEdge(string edge);
+
+  float getSum_edges();
 
   /*Finds whether a path between two nodes exists or not
     Return true if a path does exist. Else, return false.

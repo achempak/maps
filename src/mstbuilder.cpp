@@ -40,7 +40,10 @@ int main(int argc, char* argv[]) {
   outfile.close();
   delete a;
 
-
+  Graph* b = new Graph();
+  b->loadFromFile(mst_output_filename);
+  b->printGraph();
+  cout<<"The sum of the edges is: "<<b->getSum_edges();
  //Graph* a = new Graph();
  //a->loadFromFile(graph_filename);
 

@@ -16,6 +16,7 @@ class Node{
         int id;
         bool isVisited;
         vector<int> friends;
+        vector<float> edges;
         Node* prev;
         int degree;
         int initial_degree;
@@ -29,7 +30,8 @@ class Node{
         void setVisited(bool isVisited);
         vector<int>* getFriends();
         void addFriend(int n);
-        void removeFriend(Node n);
+        vector<float>* getEdges();
+        void addEdge(float e);
         Node* getPrev();
         void setPrev(Node* n);
         void incrementDegree();
