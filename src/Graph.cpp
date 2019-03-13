@@ -245,23 +245,19 @@ void Graph::socialgathering(int k, ofstream& out_file){
   for (auto iter = graph->begin(); iter!=graph->end(); ++iter){
     pq.push(iter->second);
     if(iter->second->getDegree()>maxDeg) maxDeg = iter->second->getDegree(); //Added this line to check if k is greater than max degree in graph
-    //cout<<"ID is: "<<iter->second->getId()<<". Deg is: "<<iter->second->getDegree()<<endl;
   }
   if(maxDeg<k) return; //return if max degree is less than k
   
   Node* curr = pq.top();
   while(curr->getDegree() < k){
-    //cout<<"Curr is "<<curr->getId()<<endl;
     if(!curr->getIsVisisted()){
       curr->setVisited(true);
-      //pq.pop();
       for(auto it = curr->getFriends()->begin(); it!=curr->getFriends()->end(); ++it){
         Node* frnd = (*graph)[*it];
         frnd->decrementDegree();
         pq.push(frnd);
       }
     }
-    //else pq.pop();
     curr->setDegree(0);
     pq.pop();
     curr = pq.top();
@@ -272,7 +268,6 @@ void Graph::socialgathering(int k, ofstream& out_file){
     Node* temp = pq.top();
     pq.pop();
     if(!temp->getIsVisisted()){
-      //out_file<<temp->getId()<<endl;
       first.push(temp->getId());
       temp->setVisited(true);
     }

@@ -17,9 +17,9 @@ BUILDDIR := build
 OBJDIR := $(BUILDDIR)/obj
 
 
-all: init mst
+all: init part3
 
-mst: init $(addprefix $(OBJDIR)/, mstbuilder.o Graph.o Node.o Edge.o DisjointSet.o MST.o)
+part3: init $(addprefix $(OBJDIR)/, mstbuilder.o Graph.o Node.o Edge.o DisjointSet.o MST.o)
 	$(CC) $(LDFLAGS) -o $(BUILDDIR)/$@ $(filter-out init,$^)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
