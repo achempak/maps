@@ -33,17 +33,11 @@ int main(int argc, char* argv[]) {
   //TODO   
  /* You can call the pathfinder function from here */
  
-  //cout<<"hey1"<<endl;
   MST* a = new MST();
-  //cout<<"hey2"<<endl;
   ofstream outfile(mst_output_filename);
-  //cout<<"hey3"<<endl;
   a->loadFromFile(roadmap_filename);
-  //cout<<"hey4"<<endl;
   a->mstbuild(outfile);
-  cout<<"hey5"<<endl;
   outfile.close();
-  cout<<"hey6"<<endl;
   delete a;
 
 

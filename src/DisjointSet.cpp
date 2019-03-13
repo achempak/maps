@@ -1,8 +1,14 @@
 #include "DisjointSet.hpp"
 
+#include <iostream>
+#include <fstream>
+#include <sstream>
+
+using namespace std;
+
 DisjointSet::DisjointSet(int numItems){
-    items = vector<int>(numItems, -1);
-    sizes = vector<int>(numItems, 1);
+    items = vector<int>(numItems+1, -1);
+    sizes = vector<int>(numItems+1, 1);
 }
 
 DisjointSet::~DisjointSet(){}
